@@ -39,4 +39,4 @@ jobs:
 
       - name:
         run: |
-          ./dev doctor
+          ./dev build --cross=linuxarm
