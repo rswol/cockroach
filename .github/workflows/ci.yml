@@ -34,6 +34,7 @@ jobs:
         run: |
           echo "build --config lintonbuild" >> .bazelrc.user
           echo "build --config=crosslinux" >> .bazelrc.user
+          echo "build --remote_cache=http://127.0.0.1:9867" >> ~/.bazelrc
           echo "test --test_tmpdir=${GITHUB_WORKSPACE}/tmp" >> .bazelrc.user
 
       - name:
