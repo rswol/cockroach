@@ -14,29 +14,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Mount bazel cache
-      uses: actions/cache@v1
-      with:
-        path: "/home/runner/.cache/bazel"
-        key: bazel
+      - name: Mount bazel cache
+        uses: actions/cache@v1
+        with:
+          path: "/home/runner/.cache/bazel"
+          key: bazel
 
-    - name: Install bazelisk
-      run: |
-        curl -LO "https://github.com/bazelbuild/bazelisk/releases/download/v1.1.0/bazelisk-linux-amd64"
-        mkdir -p "${GITHUB_WORKSPACE}/bin/"
-        mv bazelisk-linux-amd64 "${GITHUB_WORKSPACE}/bin/bazel"
-        chmod +x "${GITHUB_WORKSPACE}/bin/bazel"
-    
-    - name: Checkout
-      uses: actions/checkout@v2
+      - name: Install bazelisk
+        run: |
+          curl -LO "https://github.com/bazelbuild/bazelisk/releases/download/v1.1.0/bazelisk-linux-amd64"
+          mkdir -p "${GITHUB_WORKSPACE}/bin/"
+          mv bazelisk-linux-amd64 "${GITHUB_WORKSPACE}/bin/bazel"
+          chmod +x "${GITHUB_WORKSPACE}/bin/bazel"
 
-    -name: 
-      run: |
-        echo "build --config lintonbuild" >> .bazelrc.user
-        echo "build --config=crosslinux" >> .bazelrc.user
-        echo "test --test_tmpdir=${GITHUB_WORKSPACE}/tmp" >> .bazelrc.user
-    
-    -name:
-      run: |
-        ./dev doctor
-          
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name:
+        run: |
+          echo "build --config lintonbuild" >> .bazelrc.user
+          echo "build --config=crosslinux" >> .bazelrc.user
+          echo "test --test_tmpdir=${GITHUB_WORKSPACE}/tmp" >> .bazelrc.user
+
+      - name:
+        run: |
+          ./dev doctor
